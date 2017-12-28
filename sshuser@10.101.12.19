@@ -1,0 +1,28 @@
+#ssh sshuser@10.101.12.19
+
+cd /usr/hdp/2.6.1.10-4/kafka/bin
+
+./kafka-topics.sh --zookeeper 10.101.12.11:2181 --delete --topic testper
+./kafka-topics.sh --create --zookeeper 10.101.12.11:2181 --replication-factor 1 --partitions 1 --topic testper
+./kafka-configs.sh --zookeeper 10.101.12.11:2181 --alter --entity-type topics --entity-name testper --add-config retention.ms=1000000000
+
+./kafka-topics.sh --zookeeper 10.101.12.11:2181 --delete --topic customer
+./kafka-topics.sh --create --zookeeper 10.101.12.11:2181 --replication-factor 1 --partitions 4 --topic customer
+./kafka-configs.sh --zookeeper 10.101.12.11:2181 --alter --entity-type topics --entity-name customer --add-config retention.ms=1000000000
+
+./kafka-topics.sh --zookeeper 10.101.12.11:2181 --delete --topic policy
+./kafka-topics.sh --create --zookeeper 10.101.12.11:2181 --replication-factor 1 --partitions 4 --topic policy
+./kafka-configs.sh --zookeeper 10.101.12.11:2181 --alter --entity-type topics --entity-name policy --add-config retention.ms=1000000000
+
+./kafka-topics.sh --zookeeper 10.101.12.11:2181 --delete --topic claim
+./kafka-topics.sh --create --zookeeper 10.101.12.11:2181 --replication-factor 1 --partitions 4 --topic claim
+./kafka-configs.sh --zookeeper 10.101.12.11:2181 --alter --entity-type topics --entity-name claim --add-config retention.ms=1000000000
+
+./kafka-topics.sh --zookeeper 10.101.12.11:2181 --delete --topic claimpayment
+./kafka-topics.sh --create --zookeeper 10.101.12.11:2181 --replication-factor 1 --partitions 4 --topic claimpayment
+./kafka-configs.sh --zookeeper 10.101.12.11:2181 --alter --entity-type topics --entity-name claimpayment --add-config retention.ms=1000000000
+
+./kafka-topics.sh --zookeeper 10.101.12.11:2181 --delete --topic total
+./kafka-topics.sh --create --zookeeper 10.101.12.11:2181 --replication-factor 1 --partitions 4 --topic total
+./kafka-configs.sh --zookeeper 10.101.12.11:2181 --alter --entity-type topics --entity-name total --add-config retention.ms=1000000000
+

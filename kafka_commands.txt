@@ -1,0 +1,25 @@
+ssh sshuser@10.101.12.19
+
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --zookeeper 10.101.12.20:2181 --create --topic testper --partitions 3 --replication-factor 0
+
+/kafka-topics.sh --zookeeper 10.101.12.11:2181 --create --topic claim --partitions 3 --replication-factor 3
+
+KAFKA
+
+Worker Node IPs : 10.101.12.4, 10.101.12.5, 10.101.12.6
+
+cd /usr/hdp/2.6.1.10-4/kafka/bin
+
+./kafka-topics.sh --zookeeper 10.101.12.11:2181 --alter --topic lars-topic --config retention.ms=1000
+
+./kafka-topics.sh --create --zookeeper 10.101.12.11:2181 --replication-factor 1 --partitions 1 --topic lars-topic
+
+./kafka-topics.sh --list --zookeeper 10.101.12.11:2181
+
+./kafka-console-producer.sh --broker-list 10.101.12.4:9092 --topic lars-topic -property “parse.key=true” property “key.separator=:”
+
+ 
+SPARK
+
+10.101.12.27
+
